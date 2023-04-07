@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacterial-Phage Simulation</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="simulationCanvas" width="600" height="600"></canvas>
+<p>Rounds of simulation: <span id="roundsCounter">0</span></p>
+
+<div>
+    <label for="bacNum">Bacteria Number: </label>
+    <input type="number" id="bacNum" value="200">
+    <br>
+
+    <label for="bacScale">Bacteria Scale: </label>
+    <input type="number" id="bacScale" value="1">
+    <br>
+
+    <label for="phageNum">Phage Number: </label>
+    <input type="number" id="phageNum" value="30">
+    <br>
+
+    <label for="phageScale">Phage Scale: </label>
+    <input type="number" id="phageScale" value="0.7">
+    <br>
+
+    <label for="immuneCellNum">Immune Cell Number: </label>
+    <input type="number" id="immuneCellNum" value="30">
+    <br>
+
+    <label for="immuneCellScale">Immune Cell Scale: </label>
+    <input type="number" id="immuneCellScale" value="1.5">
+    <br>
+
+    <label for="bacLifespan">Bacteria Lifespan: </label>
+    <input type="number" id="bacLifespan" value="600">
+    <br>
+    <label for="bacReplicateRate">Bacteria Replication Rate: </label>
+    <input type="number" id="bacReplicateRate" value="200">
+    <br>
+    <label for="lysisRate">Lysis Rate: </label>
+    <input type="number" id="lysisRate" value="10">
+    <br>
+    <label for="phageOffspring">Phage radius: </label>
+    <input type="number" id="phageOffspring" value="4">
+    <br>
+    <label for="numGens">Number of Generations: </label>
+    <input type="number" id="numGens" value="100">
+</div>
+
+<button id="runSimulation">Run Simulation</button>
+
+<script src="simulate.js" type="text/javascript"></script>
+
+</body>
+</html>
