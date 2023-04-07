@@ -363,7 +363,6 @@ class Simulation {
             requestAnimationFrame(() => this.run());
         } else {
             console.log("Simulation completed.");
-            return
         }
     }
 
@@ -529,33 +528,70 @@ function infectBacteria(phages, bacteria, infectedBacteria, lysisRate) {
 const canvas = document.getElementById('simulationCanvas');
 const simulation = new Simulation(canvas);
 const runSimulationButton = document.getElementById("runSimulation");
+let simulationRunning = false;
+let simulationInterval;
+let simulationInitialized = false;
 
 runSimulationButton.addEventListener("click", () => {
-    const bacNum = parseInt(document.getElementById("bacNum").value);
-    const bacScale = parseFloat(document.getElementById("bacScale").value);
-    const phageNum = parseInt(document.getElementById("phageNum").value);
-    const phageScale = parseFloat(document.getElementById("phageScale").value);
-    const immuneCellNum = parseInt(document.getElementById("immuneCellNum").value);
-    const immuneCellScale = parseFloat(document.getElementById("immuneCellScale").value);
-    const bacLifespan = parseInt(document.getElementById("bacLifespan").value);
-    const bacReplicateRate = parseInt(document.getElementById("bacReplicateRate").value);
-    const lysisRate = parseInt(document.getElementById("lysisRate").value);
-    const phageOffspring = parseInt(document.getElementById("phageOffspring").value);
-    const numGens = parseInt(document.getElementById("numGens").value);
+    if (!simulationRunning) {
+        if (!simulationInitialized) {
+            const bacNum = parseInt(document.getElementById("bacNum").value);
+            const bacScale = parseFloat(document.getElementById("bacScale").value);
+            const phageNum = parseInt(document.getElementById("phageNum").value);
+            const phageScale = parseFloat(document.getElementById("phageScale").value);
+            const immuneCellNum = parseInt(document.getElementById("immuneCellNum").value);
+            const immuneCellScale = parseFloat(document.getElementById("immuneCellScale").value);
+            const bacLifespan = parseInt(document.getElementById("bacLifespan").value);
+            const bacReplicateRate = parseInt(document.getElementById("bacReplicateRate").value);
+            const lysisRate = parseInt(document.getElementById("lysisRate").value);
+            const phageOffspring = parseInt(document.getElementById("phageOffspring").value);
+            const numGens = parseInt(document.getElementById("numGens").value);
 
-    simulation.initialize({
-        bacNum: bacNum,
-        bacScale: bacScale,
-        phageNum: phageNum,
-        phageScale: phageScale,
-        immuneCellNum: immuneCellNum,
-        immuneCellScale: immuneCellScale,
-        bacLifespan: bacLifespan,
-        bacReplicateRate: bacReplicateRate,
-        lysisRate: lysisRate,
-        phageOffspring: phageOffspring,
-        numGens: numGens,
-    });
+            simulation.initialize({
+                bacNum: bacNum,
+                bacScale: bacScale,
+                phageNum: phageNum,
+                phageScale: phageScale,
+                immuneCellNum: immuneCellNum,
+                immuneCellScale: immuneCellScale,
+                bacLifespan: bacLifespan,
+                bacReplicateRate: bacReplicateRate,
+                lysisRate: lysisRate,
+                phageOffspring: phageOffspring,
+                numGens: numGens,
+            });
 
-    simulation.run();
+            simulationInitialized = true;
+        }
+
+        simulationRunning = true;
+        runSimulationButton.textContent = "Stop Simulation";
+        runSimulation();
+    } else {
+        simulationRunning = false;
+        runSimulationButton.textContent = "Run Simulation";
+        clearInterval(simulationInterval);
+    }
 });
+
+function runSimulation() {
+    simulationInterval = setInterval(() => {
+        if (!simulationRunning) {
+            clearInterval(simulationInterval);
+            return;
+        }
+
+        if (simulation.rounds < simulation.numGens) {
+            simulation.draw();
+            simulation.update();
+            simulation.rounds++;
+            document.getElementById("roundsCounter").innerText = simulation.rounds;
+        } else {
+            simulationRunning = false;
+            runSimulationButton.textContent = "Run Simulation";
+            clearInterval(simulationInterval);
+            console.log("Simulation completed.");
+        }
+
+    }, 100); // Set an interval time as needed
+}
