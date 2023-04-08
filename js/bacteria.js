@@ -1,8 +1,7 @@
 // Bacteria: green
 class Bacteria extends Organism {
-    constructor(position, bacteriaType, recombinationSite, insidePhage, replicateTimer, lysisTimer, lifeSpan, radius, scale, infected) {
+    constructor(position, recombinationSite, insidePhage, replicateTimer, lysisTimer, lifeSpan, radius, scale, infected) {
         super(position, 0, 255, 0, radius, scale);
-        this.bacteriaType = bacteriaType;
         this.recombinationSite = recombinationSite;
         this.insidePhage = insidePhage;
         this.replicateTimer = replicateTimer;

@@ -26,21 +26,8 @@ function generateBacteria(bacLifespan, bacReplicateRate, bacScale) {
     let probability1 = Math.random();
     let recombinationSite = probability1 < 0.95 ? "normal" : "mutated";
 
-    let probability2 = Math.random();
-    let bacteriaType;
-    if (probability2 <= 0.3) {
-        bacteriaType = "A";
-    } else if (probability2 <= 0.6) {
-        bacteriaType = "B";
-    } else if (probability2 <= 0.95) {
-        bacteriaType = "C";
-    } else {
-        bacteriaType = "D";
-    }
-
     return new Bacteria(
         getRandomPosition(600, 600),
-        bacteriaType,
         recombinationSite,
         null,
         Math.random() * bacReplicateRate,

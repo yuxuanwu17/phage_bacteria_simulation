@@ -15,6 +15,9 @@ class Phage extends Organism {
     }
 
     static infectPosition(phagePos, bacPos) {
+        /**
+         * check if the bacteria position is in close the phage's infect position (10 by 10 box)
+         */
         return (
             (bacPos.x <= phagePos.x + 10) &&
             (bacPos.x >= phagePos.x - 10) &&
@@ -24,7 +27,7 @@ class Phage extends Organism {
     }
 
     static canInfect(bacterium) {
-        return (bacterium.bacteriaType !== "D") && bacterium.recombinationSite === "normal";
+        return bacterium.recombinationSite === "normal";
     }
 
     cycle(phageOffspring) {

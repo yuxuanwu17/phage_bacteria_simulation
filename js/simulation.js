@@ -60,7 +60,7 @@ class Simulation {
                 newBorn.push(giveBirth(bacterium, bacLifespan, bacReplicateRate));
             }
         }
-        console.log(newBorn)
+        // console.log("newborn, replicate bacteria",newBorn)
         this.bacteria.push(...newBorn);
     }
 
@@ -116,7 +116,6 @@ class Simulation {
         for (let i = 0; i < phageNum; i++) {
             this.phages.push(generatePhage(lysisRate, phageOffspring, phageScale));
         }
-        console.log(this.phages)
 
         for (let i = 0; i < immuneCellNum; i++) {
             this.immuneCells.push(generateImmuneCell(immuneCellScale));
@@ -187,7 +186,6 @@ function samePosition(p1, p2, r1, r2) {
 function giveBirth(parent, bacLifespan, bacReplicateRate) {
     // console.log("inside the give birth")
     let b = new Bacteria(new Vec2(parent.position.x, parent.position.y),
-        parent.bacteriaType,
         parent.recombinationSite,
         null,
         Math.floor(Math.random() * bacReplicateRate),
@@ -204,28 +202,6 @@ function giveBirth(parent, bacLifespan, bacReplicateRate) {
     } else if (parent.recombinationSite === "mutated") {
         b.recombinationSite = probability1 < 0.5 ? "mutated" : "normal";
     }
-    let probability2 = Math.random();
-    if (parent.bacteriaType !== "D") {
-        if (probability2 <= 0.3) {
-            b.bacteriaType = "A";
-        } else if (probability2 > 0.3 && probability2 <= 0.6) {
-            b.bacteriaType = "B";
-        } else if (probability2 > 0.6 && probability2 <= 0.95) {
-            b.bacteriaType = "C";
-        } else {
-            b.bacteriaType = "D";
-        }
-    } else if (parent.bacteriaType === "D") {
-        if (probability2 <= 0.2) {
-            b.bacteriaType = "A";
-        } else if (probability2 > 0.2 && probability2 <= 0.4) {
-            b.bacteriaType = "B";
-        } else if (probability2 > 0.4 && probability2 <= 0.6) {
-            b.bacteriaType = "C";
-        } else {
-            b.bacteriaType = "D";
-        }
-    }
 
     // // give the replicate bacteria to blue (replicate)
     // b.red = 0;
@@ -236,6 +212,10 @@ function giveBirth(parent, bacLifespan, bacReplicateRate) {
 }
 
 function eatenByImmune(phages, bacteria, infectedBacteria, immuneCells) {
+    /**
+     * Only the phages and bacteria would get involved in the immune cell
+     * @type {*[]}
+     */
     const deadZonePositions = Simulation.deadZone(immuneCells);
 
     phages = phages.filter(phage => !phage.getEaten(deadZonePositions));
