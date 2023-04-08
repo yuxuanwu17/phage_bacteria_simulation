@@ -25,6 +25,7 @@ class Simulation {
         return deadZone;
     }
 
+    // lysis the infected bacteria and generate the phage
     lysis(phageOffspring) {
         const roundOffspring = [];
         for (let q = 0; q < this.infectedBacteria.length;) {
@@ -41,12 +42,23 @@ class Simulation {
     }
 
     updateLifespan() {
+        // update the bacteria
         for (let iB = 0; iB < this.bacteria.length;) {
             this.bacteria[iB].lifeSpanCountDown();
             if (this.bacteria[iB].lifeSpan === 0) {
                 this.bacteria.splice(iB, 1);
             } else {
                 iB++;
+            }
+        }
+
+        // update the phage
+        for (let iP = 0; iP < this.phages.length;) {
+            this.phages[iP].lifeSpanCountDown();
+            if (this.phages[iP].lifeSpan === 0) {
+                this.phages.splice(iP, 1);
+            } else {
+                iP++;
             }
         }
     }
@@ -225,6 +237,7 @@ function eatenByImmune(phages, bacteria, infectedBacteria, immuneCells) {
     return {phages, bacteria, infectedBacteria};
 }
 
+// a helper function used to interact the bacteria
 function infectBacteria(phages, bacteria, infectedBacteria, lysisRate) {
     let updatedBacteria = [];
     for (const bacterium of bacteria) {

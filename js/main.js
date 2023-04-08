@@ -6,6 +6,7 @@ let simulationInterval;
 let simulationInitialized = false;
 
 runSimulationButton.addEventListener("click", () => {
+    // it is used to control the start and end of the program
     if (!simulationRunning) {
         if (!simulationInitialized) {
             const bacNum = parseInt(document.getElementById("bacNum").value);
@@ -53,7 +54,7 @@ function runSimulation() {
             clearInterval(simulationInterval);
             return;
         }
-
+        // control the number of generation
         if (simulation.rounds < simulation.numGens) {
             simulation.draw();
             simulation.update();

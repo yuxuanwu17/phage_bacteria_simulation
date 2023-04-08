@@ -1,10 +1,23 @@
 // phage is in yellow
 class Phage extends Organism {
-    constructor(position, shellGene, otherGene, lysisStart, radius, scale) {
+    constructor(position, shellGene, lysisStart, radius, scale, lysisTimer, lifeSpan) {
         super(position, 255, 255, 0, radius, scale);
         this.shellGene = shellGene;
-        this.otherGene = otherGene;
         this.lysisStart = lysisStart;
+        this.lysisTimer = lysisTimer;
+        this.lifeSpan = lifeSpan;
+    }
+
+    lysisCountDown() {
+        this.lysisTimer--;
+    }
+
+    lifeSpanCountDown() {
+        this.lifeSpan--;
+    }
+
+    replicateCountDown() {
+        this.replicateTimer--;
     }
 
     draw(ctx) {
@@ -36,13 +49,12 @@ class Phage extends Organism {
             offSpring.push(new Phage(
                 new Vec2(this.position.x, this.position.y),
                 this.shellGene,
-                this.otherGene,
                 this.lysisStart,
                 this.radius,
                 this.scale,
-                this.red = 255,
-                this.green = 0,
-                this.blue = 0,
+                this.lysisTimer,
+                this.lifeSpan,
+                this.lifeSpan,
             ));
         }
         return offSpring;
