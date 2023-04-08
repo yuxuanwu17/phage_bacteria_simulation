@@ -5,7 +5,7 @@ function getRandomPosition(maxWidth, maxHeight) {
     };
 }
 
-function generatePhage(lysisStart, phageRadius, phageScale, lysisTimer, bacLifespan) {
+function generatePhage(lysisStart, phageRadius, phageScale, bacLifespan) {
     let probability1 = Math.random();
     let shellGene = probability1 < 0.98 ? "normal" : "mutated";
 
@@ -15,7 +15,7 @@ function generatePhage(lysisStart, phageRadius, phageScale, lysisTimer, bacLifes
         lysisStart,
         phageRadius,
         phageScale,
-        lysisTimer,
+        0,
         bacLifespan,
     );
 }

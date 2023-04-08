@@ -45,7 +45,7 @@ class Simulation {
         // update the bacteria
         for (let iB = 0; iB < this.bacteria.length;) {
             this.bacteria[iB].lifeSpanCountDown();
-            if (this.bacteria[iB].lifeSpan === 0) {
+            if (this.bacteria[iB].lifeSpan <= 0) {
                 this.bacteria.splice(iB, 1);
             } else {
                 iB++;
@@ -55,7 +55,9 @@ class Simulation {
         // update the phage
         for (let iP = 0; iP < this.phages.length;) {
             this.phages[iP].lifeSpanCountDown();
-            if (this.phages[iP].lifeSpan === 0) {
+
+            if (this.phages[iP].lifeSpan <= 0) {
+                console.log("delete")
                 this.phages.splice(iP, 1);
             } else {
                 iP++;
@@ -126,7 +128,7 @@ class Simulation {
 
         // console.log(this.bacteria)
         for (let i = 0; i < phageNum; i++) {
-            this.phages.push(generatePhage(lysisRate, phageOffspring, phageScale));
+            this.phages.push(generatePhage(lysisRate, phageOffspring, phageScale, 600));
         }
 
         for (let i = 0; i < immuneCellNum; i++) {
@@ -143,9 +145,11 @@ class Simulation {
         this.bacReplicate(this.ctx, this.bacLifespan, this.bacReplicateRate);
 
         // Move phages and other organisms
-        this.phages.forEach(phage => phage.move(15, 600, 600));
+        this.phages.forEach(phage => phage.update(this.bacLifespan, 600, 600));
         this.bacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
         this.infectedBacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
+        console.log(this.infectedBacteria.length)
+        this.infectedBacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
     }
 
@@ -189,6 +193,9 @@ class Simulation {
 }
 
 function samePosition(p1, p2, r1, r2) {
+    /*
+    r1/2 = radius * scale
+     */
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -247,6 +254,7 @@ function infectBacteria(phages, bacteria, infectedBacteria, lysisRate) {
                 bacterium.insidePhage = phages[iP];
                 bacterium.lysisTimer = Math.floor(Math.random() * lysisRate);
                 bacterium.infected = true
+                bacterium.recombinationSite = "mutated"
                 infectedBacteria.push(bacterium);
 
                 phages.splice(iP, 1);

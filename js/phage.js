@@ -14,10 +14,7 @@ class Phage extends Organism {
 
     lifeSpanCountDown() {
         this.lifeSpan--;
-    }
-
-    replicateCountDown() {
-        this.replicateTimer--;
+        // console.log(this)
     }
 
     draw(ctx) {
@@ -26,6 +23,16 @@ class Phage extends Organism {
         ctx.fillStyle = `rgb(${this.red}, ${this.green}, ${this.blue})`;
         ctx.fill();
     }
+
+    update(bacLifespan, width, height) {
+        // Decrease the lifespan and update the green color based on the remaining lifespan
+        this.lifeSpan--;
+        // control the color, with color changes, the rgb color for green would decrease until black
+        this.red = Math.max(0, this.lifeSpan * 255 / bacLifespan);
+        this.green = Math.max(0, this.lifeSpan * 255 / bacLifespan);
+        this.move(15, width, height);
+    }
+
 
     static infectPosition(phagePos, bacPos) {
         /**
@@ -53,7 +60,6 @@ class Phage extends Organism {
                 this.radius,
                 this.scale,
                 this.lysisTimer,
-                this.lifeSpan,
                 this.lifeSpan,
             ));
         }
