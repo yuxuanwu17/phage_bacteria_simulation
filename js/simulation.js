@@ -58,7 +58,7 @@ class Simulation {
     }
 
     updateLifespan() {
-        // update the bacteria
+        // update the bacteria and delete the bacteria life span smaller than zero
         for (let iB = 0; iB < this.bacteria.length;) {
             this.bacteria[iB].lifeSpanCountDown();
             if (this.bacteria[iB].lifeSpan <= 0) {
@@ -68,7 +68,7 @@ class Simulation {
             }
         }
 
-        // update the phage
+        // update the phage and delete the phage's life span smaller than zero
         for (let iP = 0; iP < this.phages.length;) {
             this.phages[iP].lifeSpanCountDown();
 
@@ -143,7 +143,7 @@ class Simulation {
 
         // console.log(this.bacteria)
         for (let i = 0; i < phageNum; i++) {
-            this.phages.push(generatePhage(lysisRate, phageRadius, phageScale, 600));
+            this.phages.push(generatePhage(phageRadius, phageScale, 600));
         }
 
         for (let i = 0; i < immuneCellNum; i++) {
