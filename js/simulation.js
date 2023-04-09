@@ -25,6 +25,22 @@ class Simulation {
         return deadZone;
     }
 
+    getBacteriaCount() {
+        // Return the total number of bacteria
+        return simulation.bacteria.length;
+    }
+
+    getPhageSize() {
+        // Return the phage size
+        return simulation.phages.length;
+    }
+
+    getInfectedBacteriaCount() {
+        // Return the total number of infected bacteria
+        return simulation.infectedBacteria.length;
+    }
+
+
     // lysis the infected bacteria and generate the phage
     lysis(phageOffspring) {
         const roundOffspring = [];
@@ -88,7 +104,6 @@ class Simulation {
         this.bacteria = bacteria;
         this.infectedBacteria = infectedBacteria;
     }
-
 
     infectBacteria(lysisRate) {
         const {
@@ -178,17 +193,6 @@ class Simulation {
         }
     }
 
-    run() {
-        if (this.rounds < this.numGens) {
-            this.draw();
-            this.update();
-            this.rounds++;
-            document.getElementById("roundsCounter").innerText = this.rounds;
-            requestAnimationFrame(() => this.run());
-        } else {
-            console.log("Simulation completed.");
-        }
-    }
 
 }
 

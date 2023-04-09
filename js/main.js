@@ -60,6 +60,10 @@ function runSimulation() {
             simulation.update();
             simulation.rounds++;
             document.getElementById("roundsCounter").innerText = simulation.rounds;
+            // Update the new elements
+            document.getElementById("bacteriaCount").innerText = simulation.getBacteriaCount();
+            document.getElementById("phageSize").innerText = simulation.getPhageSize();
+            document.getElementById("infectedBacteriaCount").innerText = simulation.getInfectedBacteriaCount();
         } else {
             simulationRunning = false;
             runSimulationButton.textContent = "Run Simulation";
