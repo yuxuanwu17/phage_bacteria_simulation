@@ -18,7 +18,7 @@ runSimulationButton.addEventListener("click", () => {
             const lifespan = parseInt(document.getElementById("lifespan").value);
             const bacReplicateRate = parseInt(document.getElementById("bacReplicateRate").value);
             const lysisRate = parseInt(document.getElementById("lysisRate").value);
-            const phageOffspring = parseInt(document.getElementById("phageOffspring").value);
+            const phageRadius = parseInt(document.getElementById("phageRadius").value);
             const numGens = parseInt(document.getElementById("numGens").value);
 
             simulation.initialize({
@@ -31,7 +31,7 @@ runSimulationButton.addEventListener("click", () => {
                 lifespan: lifespan,
                 bacReplicateRate: bacReplicateRate,
                 lysisRate: lysisRate,
-                phageOffspring: phageOffspring,
+                phageRadius: phageRadius,
                 numGens: numGens,
             });
 

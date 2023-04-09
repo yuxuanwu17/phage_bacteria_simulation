@@ -42,12 +42,12 @@ class Simulation {
 
 
     // lysis the infected bacteria and generate the phage
-    lysis(phageOffspring) {
+    lysis(phageRadius) {
         const roundOffspring = [];
         for (let q = 0; q < this.infectedBacteria.length;) {
             this.infectedBacteria[q].lysisCountDown();
             if (this.infectedBacteria[q].lysisTimer <= 0) {
-                const eachOffspring = this.infectedBacteria[q].insidePhage.cycle(phageOffspring);
+                const eachOffspring = this.infectedBacteria[q].insidePhage.cycle(phageRadius);
                 this.infectedBacteria.splice(q, 1);
                 roundOffspring.push(...eachOffspring);
             } else {
@@ -127,13 +127,13 @@ class Simulation {
                    lifespan,
                    bacReplicateRate,
                    lysisRate,
-                   phageOffspring,
+                   phageRadius,
                    numGens,
                }) {
         this.lifespan = lifespan;
         this.bacReplicateRate = bacReplicateRate;
         this.lysisRate = lysisRate
-        this.phageOffspring = phageOffspring
+        this.phageRadius = phageRadius
         this.numGens = numGens;
 
 
@@ -143,7 +143,7 @@ class Simulation {
 
         // console.log(this.bacteria)
         for (let i = 0; i < phageNum; i++) {
-            this.phages.push(generatePhage(lysisRate, phageOffspring, phageScale, 600));
+            this.phages.push(generatePhage(lysisRate, phageRadius, phageScale, 600));
         }
 
         for (let i = 0; i < immuneCellNum; i++) {
@@ -155,7 +155,7 @@ class Simulation {
     update() {
         this.eatenByImmune();
         this.infectBacteria(this.lysisRate);
-        this.lysis(this.phageOffspring);
+        this.lysis(this.phageRadius);
         this.updateLifespan();
         this.bacReplicate(this.ctx, this.lifespan, this.bacReplicateRate);
 

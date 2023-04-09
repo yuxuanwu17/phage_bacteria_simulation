@@ -166,9 +166,9 @@ class Phage extends Organism {
         return (bacterium.bacteriaType !== "D") && bacterium.recombinationSite === "normal";
     }
 
-    cycle(phageOffspring) {
+    cycle(phageRadius) {
         const offSpring = [];
-        for (let i = 0; i < phageOffspring; i++) {
+        for (let i = 0; i < phageRadius; i++) {
             offSpring.push(new Phage(
                 new Vec2(this.position.x, this.position.y),
                 this.shellGene,
@@ -208,9 +208,9 @@ This code defines a class called `Phage`, which represents a type of virus that 
    - `infectPosition(phagePos, bacPos)`: A helper function that checks if a phage can infect a bacterium based on their positions. It takes two position objects (`phagePos` and `bacPos`) and returns `true` if the bacterium is within a certain range of the phage, and `false` otherwise. The range is defined as a 4x4 square around the phage's position.
    - `canInfect(bacterium)`: Determines if a phage can infect a given bacterium based on the bacterium's properties. It takes a `bacterium` object and returns `true` if the bacterium's type is not "D" and its recombination site is "normal", and `false` otherwise.
 
-4. cycle(phageOffspring): This method simulates the phage's replication cycle, generating a specified number of offspring. It takes the following parameter:
+4. cycle(phageRadius): This method simulates the phage's replication cycle, generating a specified number of offspring. It takes the following parameter:
 
-   - `phageOffspring`: The number of offspring to generate.
+   - `phageRadius`: The number of offspring to generate.
 
    The method creates an array of new `Phage` instances with the same properties as the current phage and returns the array.
 
