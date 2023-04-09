@@ -46,7 +46,7 @@ class Simulation {
         const roundOffspring = [];
         for (let q = 0; q < this.infectedBacteria.length;) {
             this.infectedBacteria[q].lysisCountDown();
-            if (this.infectedBacteria[q].lysisTimer === 0) {
+            if (this.infectedBacteria[q].lysisTimer <= 0) {
                 const eachOffspring = this.infectedBacteria[q].insidePhage.cycle(phageOffspring);
                 this.infectedBacteria.splice(q, 1);
                 roundOffspring.push(...eachOffspring);
@@ -164,7 +164,7 @@ class Simulation {
         this.bacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
         this.infectedBacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
         // console.log(this.infectedBacteria.length)
-        // this.infectedBacteria.forEach(bacterium => console.log(bacterium));
+        this.infectedBacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
     }
 
