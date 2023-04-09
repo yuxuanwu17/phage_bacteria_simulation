@@ -6,12 +6,8 @@ function getRandomPosition(maxWidth, maxHeight) {
 }
 
 function generatePhage(lysisStart, phageRadius, phageScale, lifespan) {
-    let probability1 = Math.random();
-    let shellGene = probability1 < 0.98 ? "normal" : "infected";
-
     return new Phage(
         getRandomPosition(600, 600),
-        shellGene,
         lysisStart,
         phageRadius,
         phageScale,

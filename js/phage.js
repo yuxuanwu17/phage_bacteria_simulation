@@ -1,8 +1,7 @@
 // phage is in yellow
 class Phage extends Organism {
-    constructor(position, shellGene, lysisStart, radius, scale, lysisTimer, lifeSpan) {
+    constructor(position, lysisStart, radius, scale, lysisTimer, lifeSpan) {
         super(position, 255, 255, 0, radius, scale);
-        this.shellGene = shellGene;
         this.lysisStart = lysisStart;
         this.lysisTimer = lysisTimer;
         this.lifeSpan = lifeSpan;
@@ -55,7 +54,6 @@ class Phage extends Organism {
         for (let i = 0; i < phageRadius; i++) {
             offSpring.push(new Phage(
                 new Vec2(this.position.x, this.position.y),
-                this.shellGene,
                 this.lysisStart,
                 this.radius,
                 this.scale,
