@@ -69,3 +69,10 @@ function runSimulation() {
 
     }, 100); // Set an interval time as needed
 }
+
+
+const resetSimulationButton = document.getElementById("resetSimulation");
+
+resetSimulationButton.addEventListener("click", () => {
+    location.reload()
+});

@@ -57,7 +57,7 @@ class Simulation {
             this.phages[iP].lifeSpanCountDown();
 
             if (this.phages[iP].lifeSpan <= 0) {
-                console.log("delete")
+                // console.log("delete")
                 this.phages.splice(iP, 1);
             } else {
                 iP++;
@@ -148,8 +148,8 @@ class Simulation {
         this.phages.forEach(phage => phage.update(this.bacLifespan, 600, 600));
         this.bacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
         this.infectedBacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
-        console.log(this.infectedBacteria.length)
-        this.infectedBacteria.forEach(bacterium => console.log(bacterium));
+        // console.log(this.infectedBacteria.length)
+        // this.infectedBacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
     }
 
