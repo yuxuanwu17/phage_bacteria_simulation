@@ -7,7 +7,7 @@ function getRandomPosition(maxWidth, maxHeight) {
 
 function generatePhage(lysisStart, phageRadius, phageScale, lifespan) {
     let probability1 = Math.random();
-    let shellGene = probability1 < 0.98 ? "normal" : "mutated";
+    let shellGene = probability1 < 0.98 ? "normal" : "infected";
 
     return new Phage(
         getRandomPosition(600, 600),
@@ -22,7 +22,7 @@ function generatePhage(lysisStart, phageRadius, phageScale, lifespan) {
 
 function generateBacteria(lifespan, bacReplicateRate, bacScale) {
     let probability1 = Math.random();
-    let recombinationSite = probability1 < 0.95 ? "normal" : "mutated";
+    let recombinationSite = probability1 < 0.95 ? "normal" : "infected";
 
     return new Bacteria(
         getRandomPosition(600, 600),
