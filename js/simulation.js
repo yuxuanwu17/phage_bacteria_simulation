@@ -7,7 +7,7 @@ class Simulation {
         this.immuneCells = [];
         this.numGens = 0;
         this.infectedBacteria = [];
-        this.bacLifespan = null;   // define bacLifespan as a property of the class
+        this.lifespan = null;   // define lifespan as a property of the class
         this.rounds = 0;
 
     }
@@ -81,13 +81,13 @@ class Simulation {
         }
     }
 
-    bacReplicate(c, bacLifespan, bacReplicateRate) {
+    bacReplicate(c, lifespan, bacReplicateRate) {
         const newBorn = [];
         for (const bacterium of this.bacteria) {
             bacterium.replicateCountDown();
             if (bacterium.replicateTimer <= 0) {
                 bacterium.resetReplicateTimer(bacReplicateRate);
-                newBorn.push(giveBirth(bacterium, bacLifespan, bacReplicateRate));
+                newBorn.push(giveBirth(bacterium, lifespan, bacReplicateRate));
             }
         }
         // console.log("newborn, replicate bacteria",newBorn)
@@ -124,13 +124,13 @@ class Simulation {
                    phageScale,
                    immuneCellNum,
                    immuneCellScale,
-                   bacLifespan,
+                   lifespan,
                    bacReplicateRate,
                    lysisRate,
                    phageOffspring,
                    numGens,
                }) {
-        this.bacLifespan = bacLifespan;
+        this.lifespan = lifespan;
         this.bacReplicateRate = bacReplicateRate;
         this.lysisRate = lysisRate
         this.phageOffspring = phageOffspring
@@ -138,7 +138,7 @@ class Simulation {
 
 
         for (let i = 0; i < bacNum; i++) {
-            this.bacteria.push(generateBacteria(bacLifespan, bacReplicateRate, bacScale));
+            this.bacteria.push(generateBacteria(lifespan, bacReplicateRate, bacScale));
         }
 
         // console.log(this.bacteria)
@@ -157,12 +157,12 @@ class Simulation {
         this.infectBacteria(this.lysisRate);
         this.lysis(this.phageOffspring);
         this.updateLifespan();
-        this.bacReplicate(this.ctx, this.bacLifespan, this.bacReplicateRate);
+        this.bacReplicate(this.ctx, this.lifespan, this.bacReplicateRate);
 
         // Move phages and other organisms
-        this.phages.forEach(phage => phage.update(this.bacLifespan, 600, 600));
-        this.bacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
-        this.infectedBacteria.forEach(bacterium => bacterium.update(this.bacLifespan, this.bacReplicateRate, 600, 600));
+        this.phages.forEach(phage => phage.update(this.lifespan, 600, 600));
+        this.bacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
+        this.infectedBacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
         // console.log(this.infectedBacteria.length)
         this.infectedBacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
@@ -206,14 +206,14 @@ function samePosition(p1, p2, r1, r2) {
     return distance <= r1 + r2;
 }
 
-function giveBirth(parent, bacLifespan, bacReplicateRate) {
+function giveBirth(parent, lifespan, bacReplicateRate) {
     // console.log("inside the give birth")
     let b = new Bacteria(new Vec2(parent.position.x, parent.position.y),
         parent.recombinationSite,
         null,
         Math.floor(Math.random() * bacReplicateRate),
         0,
-        bacLifespan,
+        lifespan,
         5,
         parent.scale,
         false

@@ -24,12 +24,12 @@ class Phage extends Organism {
         ctx.fill();
     }
 
-    update(bacLifespan, width, height) {
+    update(lifespan, width, height) {
         // Decrease the lifespan and update the green color based on the remaining lifespan
         this.lifeSpan--;
         // control the color, with color changes, the rgb color for green would decrease until black
-        this.red = Math.max(0, this.lifeSpan * 255 / bacLifespan);
-        this.green = Math.max(0, this.lifeSpan * 255 / bacLifespan);
+        this.red = Math.max(0, this.lifeSpan * 255 / lifespan);
+        this.green = Math.max(0, this.lifeSpan * 255 / lifespan);
         this.move(15, width, height);
     }
 

@@ -37,11 +37,11 @@ class Bacteria extends Organism {
         ctx.fill();
     }
 
-    update(bacLifespan, bacReplicateRate, width, height) {
+    update(lifespan, bacReplicateRate, width, height) {
         // Decrease the lifespan and update the green color based on the remaining lifespan
         this.lifeSpan--;
         // control the color, with color changes, the rgb color for green would decrease until black
-        this.green = Math.max(0, this.lifeSpan * 255 / bacLifespan);
+        this.green = Math.max(0, this.lifeSpan * 255 / lifespan);
 
         // Replicate the bacteria if the replicate timer reaches 0
         if (this.replicateTimer <= 0) {

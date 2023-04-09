@@ -5,7 +5,7 @@ function getRandomPosition(maxWidth, maxHeight) {
     };
 }
 
-function generatePhage(lysisStart, phageRadius, phageScale, bacLifespan) {
+function generatePhage(lysisStart, phageRadius, phageScale, lifespan) {
     let probability1 = Math.random();
     let shellGene = probability1 < 0.98 ? "normal" : "mutated";
 
@@ -16,11 +16,11 @@ function generatePhage(lysisStart, phageRadius, phageScale, bacLifespan) {
         phageRadius,
         phageScale,
         0,
-        bacLifespan,
+        lifespan,
     );
 }
 
-function generateBacteria(bacLifespan, bacReplicateRate, bacScale) {
+function generateBacteria(lifespan, bacReplicateRate, bacScale) {
     let probability1 = Math.random();
     let recombinationSite = probability1 < 0.95 ? "normal" : "mutated";
 
@@ -30,7 +30,7 @@ function generateBacteria(bacLifespan, bacReplicateRate, bacScale) {
         null,
         Math.random() * bacReplicateRate,
         0,
-        bacLifespan,
+        lifespan,
         5,
         bacScale,
         false

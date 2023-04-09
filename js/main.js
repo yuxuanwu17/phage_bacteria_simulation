@@ -15,7 +15,7 @@ runSimulationButton.addEventListener("click", () => {
             const phageScale = parseFloat(document.getElementById("phageScale").value);
             const immuneCellNum = parseInt(document.getElementById("immuneCellNum").value);
             const immuneCellScale = parseFloat(document.getElementById("immuneCellScale").value);
-            const bacLifespan = parseInt(document.getElementById("bacLifespan").value);
+            const lifespan = parseInt(document.getElementById("lifespan").value);
             const bacReplicateRate = parseInt(document.getElementById("bacReplicateRate").value);
             const lysisRate = parseInt(document.getElementById("lysisRate").value);
             const phageOffspring = parseInt(document.getElementById("phageOffspring").value);
@@ -28,7 +28,7 @@ runSimulationButton.addEventListener("click", () => {
                 phageScale: phageScale,
                 immuneCellNum: immuneCellNum,
                 immuneCellScale: immuneCellScale,
-                bacLifespan: bacLifespan,
+                lifespan: lifespan,
                 bacReplicateRate: bacReplicateRate,
                 lysisRate: lysisRate,
                 phageOffspring: phageOffspring,
