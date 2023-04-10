@@ -217,7 +217,9 @@ This code defines a class called `Phage`, which represents a type of virus that 
 In summary, the `Phage` class represents a virus that infects bacteria in a 2D environment. It extends the `Organism` class to inherit its properties and methods while adding additional properties and methods specific to phages, such as the ability to infect bacteria and replicate.
 
 
+Lytic cycle: In this cycle, the phage infects the bacterium, takes control of the bacterial machinery, and starts producing copies of itself. Eventually, the bacterial cell bursts (lyses), releasing the newly formed phage particles that can go on to infect other bacteria. In this case, the infected bacterium replicates the phage but does not replicate itself.
 
+Lysogenic cycle: In this cycle, the phage integrates its genetic material into the bacterial genome, forming a prophage. The prophage remains dormant, and the bacterial cell can continue to replicate and divide as normal, passing the prophage to its daughter cells. At some point, the prophage can be induced to exit the bacterial genome and initiate the lytic cycle, leading to the production of new phage particles and bacterial cell lysis. In this case, both the infected bacterium and the phage can replicate, but the phage replication is delayed.
 
 
 ```js

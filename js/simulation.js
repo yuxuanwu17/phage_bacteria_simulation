@@ -164,7 +164,7 @@ class Simulation {
         this.bacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
         this.infectedBacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
         // console.log(this.infectedBacteria.length)
-        // this.infectedBacteria.forEach(bacterium => console.log(bacterium));
+        // this.bacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
     }
 
@@ -210,40 +210,19 @@ function giveBirth(parent, lifespan, bacReplicateRate) {
     // console.log("inside the give birth")
     let b = new Bacteria(new Vec2(parent.position.x, parent.position.y),
         parent.recombinationSite,
-        null,
+        parent.insidePhage,
         Math.floor(Math.random() * bacReplicateRate),
-        0,
+        parent.lysisTimer,
         lifespan,
         5,
         parent.scale,
-        false
+        parent.infected
     )
 
-    let probability1 = Math.random();
-    if (parent.recombinationSite === "normal") {
-        if (probability1 < 0.95){
-            b.recombinationSite = "normal"
-            b.infected = false
-        }else {
-            b.recombinationSite = "infected"
-            b.infected = true
-        }
-
-    } else if (parent.recombinationSite === "infected") {
-        if (probability1 < 0.5){
-            b.recombinationSite = "normal"
-            b.infected = false
-        }else {
-            b.recombinationSite = "infected"
-            b.infected = true
-        }
-
-    }
-
     // // give the replicate bacteria to blue (replicate)
-    // b.red = 0;
-    // b.green = 0;
-    // b.blue = 255;
+    b.red = 0;
+    b.green = 0;
+    b.blue = 255;
 
     return b;
 }

@@ -1,8 +1,7 @@
 // phage is in yellow
 class Phage extends Organism {
-    constructor(position, radius, scale, lysisTimer, lifeSpan) {
+    constructor(position, radius, scale, lifeSpan) {
         super(position, 255, 255, 0, radius, scale);
-        this.lysisTimer = lysisTimer;
         this.lifeSpan = lifeSpan;
     }
 
@@ -37,7 +36,6 @@ class Phage extends Organism {
                 new Vec2(this.position.x, this.position.y),
                 5,
                 this.scale,
-                0,
                 lifespan,
             ));
         }

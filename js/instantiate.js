@@ -10,18 +10,17 @@ function generatePhage(phageOffspring, phageScale, lifespan) {
         getRandomPosition(600, 600),
         6,
         phageScale,
-        0,
         lifespan,
     );
 }
 
 function generateBacteria(lifespan, bacReplicateRate, bacScale) {
-    let probability1 = Math.random();
-    let recombinationSite = probability1 < 0.95 ? "normal" : "infected";
+    // let probability1 = Math.random();
+    // let recombinationSite = probability1 < 0.95 ? "normal" : "infected";
 
     return new Bacteria(
         getRandomPosition(600, 600),
-        recombinationSite,
+        "normal",
         null,
         Math.random() * bacReplicateRate,
         0,
