@@ -14,17 +14,17 @@ class Simulation {
 
     getBacteriaCount() {
         // Return the total number of bacteria
-        return simulation.bacteria.length;
+        return this.bacteria.length;
     }
 
     getPhageSize() {
         // Return the phage size
-        return simulation.phages.length;
+        return this.phages.length;
     }
 
     getInfectedBacteriaCount() {
         // Return the total number of infected bacteria
-        return simulation.infectedBacteria.length;
+        return this.infectedBacteria.length;
     }
 
 

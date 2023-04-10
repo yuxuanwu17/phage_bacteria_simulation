@@ -1,7 +1,7 @@
-function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
+function createCharts(bacteriaCounts=[], phageSizes=[], infectedBacteriaCounts=[]) {
 
     const bacteriaData = {
-        labels: Array.from({ length: bacteriaCounts.length }, (_, i) => i + 1),
+        labels: Array.from({length: bacteriaCounts.length}, (_, i) => i + 1),
         datasets: [
             {
                 label: 'Number of Bacteria',
@@ -14,7 +14,7 @@ function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
     };
 
     const phageData = {
-        labels: Array.from({ length: phageSizes.length }, (_, i) => i + 1),
+        labels: Array.from({length: phageSizes.length}, (_, i) => i + 1),
         datasets: [
             {
                 label: 'Number of Phage',
@@ -27,7 +27,7 @@ function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
     };
 
     const infectedBacteriaData = {
-        labels: Array.from({ length: infectedBacteriaCounts.length }, (_, i) => i + 1),
+        labels: Array.from({length: infectedBacteriaCounts.length}, (_, i) => i + 1),
         datasets: [
             {
                 label: 'Number of Infected Bacteria',
@@ -44,7 +44,7 @@ function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
     const phageCtx = document.getElementById('phageChart').getContext('2d');
     const infectedBacteriaCtx = document.getElementById('infectedBacteriaChart').getContext('2d');
 
-    const bacteriaChart = new Chart(bacteriaCtx, {
+    bacteriaChart = new Chart(bacteriaCtx, {
         type: 'line',
         data: bacteriaData,
         options: {
@@ -56,7 +56,7 @@ function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
         }
     });
 
-    const phageChart = new Chart(phageCtx, {
+    phageChart = new Chart(phageCtx, {
         type: 'line',
         data: phageData,
         options: {
@@ -68,7 +68,7 @@ function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
         }
     });
 
-    const infectedBacteriaChart = new Chart(infectedBacteriaCtx, {
+    infectedBacteriaChart = new Chart(infectedBacteriaCtx, {
         type: 'line',
         data: infectedBacteriaData,
         options: {
@@ -79,4 +79,10 @@ function createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts) {
             }
         }
     });
+
+    return {
+        bacteriaChart: bacteriaChart,
+        phageChart: phageChart,
+        infectedBacteriaChart: infectedBacteriaChart,
+    };
 }
