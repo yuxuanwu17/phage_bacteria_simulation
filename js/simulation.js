@@ -47,7 +47,7 @@ class Simulation {
         for (let q = 0; q < this.infectedBacteria.length;) {
             this.infectedBacteria[q].lysisCountDown();
             if (this.infectedBacteria[q].lysisTimer <= 0) {
-                const eachOffspring = this.infectedBacteria[q].insidePhage.cycle(phageRadius);
+                const eachOffspring = this.infectedBacteria[q].insidePhage.cycle(phageRadius, this.lifespan);
                 this.infectedBacteria.splice(q, 1);
                 roundOffspring.push(...eachOffspring);
             } else {

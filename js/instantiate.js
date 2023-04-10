@@ -8,7 +8,7 @@ function getRandomPosition(maxWidth, maxHeight) {
 function generatePhage(phageRadius, phageScale, lifespan) {
     return new Phage(
         getRandomPosition(600, 600),
-        5,
+        6,
         phageScale,
         0,
         lifespan,
