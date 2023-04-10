@@ -44,29 +44,6 @@ class Simulation {
         this.phages.push(...roundOffspring);
     }
 
-    updateLifespan() {
-        // update the bacteria and delete the bacteria life span smaller than zero
-        for (let iB = 0; iB < this.bacteria.length;) {
-            this.bacteria[iB].lifeSpanCountDown();
-            if (this.bacteria[iB].lifeSpan <= 0) {
-                this.bacteria.splice(iB, 1);
-            } else {
-                iB++;
-            }
-        }
-
-        // update the phage and delete the phage's life span smaller than zero
-        for (let iP = 0; iP < this.phages.length;) {
-            this.phages[iP].lifeSpanCountDown();
-
-            if (this.phages[iP].lifeSpan <= 0) {
-                // console.log("delete")
-                this.phages.splice(iP, 1);
-            } else {
-                iP++;
-            }
-        }
-    }
 
     bacReplicate(c, lifespan, bacReplicateRate) {
         const newBorn = [];
@@ -132,7 +109,6 @@ class Simulation {
     update() {
         this.infectBacteria(this.lysisRate);
         this.lysis(this.phageOffspring);
-        this.updateLifespan();
         this.bacReplicate(this.ctx, this.lifespan, this.bacReplicateRate);
 
         // Move phages and other organisms

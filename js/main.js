@@ -5,6 +5,11 @@ let simulationRunning = false;
 let simulationInterval;
 let simulationInitialized = false;
 
+let bacteriaCounts = [];
+let phageSizes = [];
+let infectedBacteriaCounts = [];
+
+
 runSimulationButton.addEventListener("click", () => {
     // it is used to control the start and end of the program
     if (!simulationRunning) {
@@ -62,13 +67,20 @@ function runSimulation() {
             document.getElementById("roundsCounter").innerText = simulation.rounds;
             // Update the new elements
             document.getElementById("bacteriaCount").innerText = simulation.getBacteriaCount();
+            bacteriaCounts.push(simulation.getBacteriaCount());
+
             document.getElementById("phageSize").innerText = simulation.getPhageSize();
+            phageSizes.push(simulation.getPhageSize());
+
             document.getElementById("infectedBacteriaCount").innerText = simulation.getInfectedBacteriaCount();
+            infectedBacteriaCounts.push(simulation.getInfectedBacteriaCount());
+
         } else {
             simulationRunning = false;
             runSimulationButton.textContent = "Run Simulation";
             clearInterval(simulationInterval);
             console.log("Simulation completed.");
+            createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts);
         }
 
     }, 100); // Set an interval time as needed
@@ -80,3 +92,4 @@ const resetSimulationButton = document.getElementById("resetSimulation");
 resetSimulationButton.addEventListener("click", () => {
     location.reload()
 });
+simulation.rounds = 0;
