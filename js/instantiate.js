@@ -5,7 +5,7 @@ function getRandomPosition(maxWidth, maxHeight) {
     };
 }
 
-function generatePhage(phageRadius, phageScale, lifespan) {
+function generatePhage(phageOffspring, phageScale, lifespan) {
     return new Phage(
         getRandomPosition(600, 600),
         6,

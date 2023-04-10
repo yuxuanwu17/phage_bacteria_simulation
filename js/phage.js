@@ -45,9 +45,9 @@ class Phage extends Organism {
         return bacterium.recombinationSite === "normal";
     }
 
-    cycle(phageRadius, lifespan) {
+    cycle(phageOffspring, lifespan) {
         const offSpring = [];
-        for (let i = 0; i < phageRadius; i++) {
+        for (let i = 0; i < phageOffspring; i++) {
             offSpring.push(new Phage(
                 new Vec2(this.position.x, this.position.y),
                 5,
