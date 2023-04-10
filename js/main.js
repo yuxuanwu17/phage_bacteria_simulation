@@ -18,6 +18,7 @@ window.onload = function () {
 
 
     runSimulationButton.addEventListener("click", () => {
+        console.log("clicked")
         // it is used to control the start and end of the program
         if (!simulationRunning) {
             if (!simulationInitialized) {

@@ -10,62 +10,102 @@
             background-color: black;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<canvas id="simulationCanvas" width="600" height="600"></canvas>
-<p>Rounds of simulation: <span id="roundsCounter">0</span></p>
 
-<div>
-    <label for="bacNum">Bacteria Number: </label>
-    <input type="number" id="bacNum" value="200">
-    <br>
+<div class="container">
+    <h1 class="mb-4">Bacterial-Phage Simulation</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form id="simulation-form">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="bacNum" class="form-label">Bacteria Number:</label>
+                        <input type="number" class="form-control" id="bacNum" value="200">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="bacScale" class="form-label">Bacteria Scale:</label>
+                        <input type="number" class="form-control" id="bacScale" value="1">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="phageNum" class="form-label">Phage Number:</label>
+                        <input type="number" class="form-control" id="phageNum" value="30">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phageScale" class="form-label">Phage Scale:</label>
+                        <input type="number" class="form-control" id="phageScale" value="0.7">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="phageOffspring" class="form-label">Phage Offspring:</label>
+                        <input type="number" class="form-control" id="phageOffspring" value="4">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="immuneCellNum" class="form-label">Immune Cell Number:</label>
+                        <input type="number" class="form-control" id="immuneCellNum" value="30">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="immuneCellScale" class="form-label">Immune Cell Scale:</label>
+                        <input type="number" class="form-control" id="immuneCellScale" value="1.5">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lifespan" class="form-label">Bacteria Lifespan:</label>
+                        <input type="number" class="form-control" id="lifespan" value="600">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="bacReplicateRate" class="form-label">Bacteria Replication Rate:</label>
+                        <input type="number" class="form-control" id="bacReplicateRate" value="200">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lysisRate" class="form-label">Lysis Rate:</label>
+                        <input type="number" class="form-control" id="lysisRate" value="10">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="numGens" class="form-label">Number of Generations:</label>
+                        <input type="number" class="form-control" id="numGens" value="1000">
+                    </div>
+                </div>
+            </form>
 
-    <label for="bacScale">Bacteria Scale: </label>
-    <input type="number" id="bacScale" value="1">
-    <br>
+            <button id="runSimulation" class="btn btn-primary" type="button">Run Simulation</button>
+            <button id="resetSimulation" class="btn btn-secondary" type="button">Reset Simulation</button>
 
-    <label for="phageNum">Phage Number: </label>
-    <input type="number" id="phageNum" value="30">
-    <br>
 
-    <label for="phageScale">Phage Scale: </label>
-    <input type="number" id="phageScale" value="0.7">
-    <br>
+            <p>Rounds of simulation: <span id="roundsCounter">0</span></p>
+            <p>Bacteria: <span id="bacteriaCount">0</span></p>
+            <p>Phage size: <span id="phageSize">0</span></p>
+            <p>Infected Bacteria: <span id="infectedBacteriaCount">0</span></p>
+        </div>
+        <div class="col-md-8">
+            <canvas id="simulationCanvas" width="600" height="600"></canvas>
+        </div>
+    </div>
 
-    <label for="phageOffspring">Phage Offspring: </label>
-    <input type="number" id="phageOffspring" value="4">
-    <br>
-
-    <label for="immuneCellNum">Immune Cell Number: </label>
-    <input type="number" id="immuneCellNum" value="30">
-    <br>
-
-    <label for="immuneCellScale">Immune Cell Scale: </label>
-    <input type="number" id="immuneCellScale" value="1.5">
-    <br>
-
-    <label for="lifespan">Bacteria Lifespan: </label>
-    <input type="number" id="lifespan" value="600">
-    <br>
-    <label for="bacReplicateRate">Bacteria Replication Rate: </label>
-    <input type="number" id="bacReplicateRate" value="200">
-    <br>
-    <label for="lysisRate">Lysis Rate: </label>
-    <input type="number" id="lysisRate" value="10">
-    <br>
-    <label for="numGens">Number of Generations: </label>
-    <input type="number" id="numGens" value="1000">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <canvas id="bacteriaChart"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="phageChart"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="infectedBacteriaChart"></canvas>
+        </div>
+    </div>
 </div>
 
-<button id="runSimulation">Run Simulation</button>
-<button id="resetSimulation">Reset Simulation</button>
-<!-- Add these lines inside your HTML file -->
-<p>Bacteria: <span id="bacteriaCount">0</span></p>
-<p>Phage size: <span id="phageSize">0</span></p>
-<p>Infected Bacteria: <span id="infectedBacteriaCount">0</span></p>
-
-
+<!-- Add your script files -->
 <script src="../js/plotData.js"></script>
 <script src="../js/organism.js" type="text/javascript"></script>
 <script src="../js/bacteria.js" type="text/javascript"></script>
@@ -74,9 +114,3 @@
 <script src="../js/simulation.js" type="text/javascript"></script>
 <script src="../js/instantiate.js" type="text/javascript"></script>
 <script src="../js/main.js" type="text/javascript"></script>
-<canvas id="bacteriaChart"></canvas>
-<canvas id="phageChart"></canvas>
-<canvas id="infectedBacteriaChart"></canvas>
-
-</body>
-</html>
