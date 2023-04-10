@@ -19,6 +19,7 @@ class Phage extends Organism {
     }
 
     update(lifespan, width, height) {
+        // console.log(this)
         // Decrease the lifespan and update the green color based on the remaining lifespan
         this.lifeSpan--;
         // control the color, with color changes, the rgb color for green would decrease until black
@@ -33,10 +34,10 @@ class Phage extends Organism {
          * check if the bacteria position is in close the phage's infect position (10 by 10 box)
          */
         return (
-            (bacPos.x <= phagePos.x + 10) &&
-            (bacPos.x >= phagePos.x - 10) &&
-            (bacPos.y <= phagePos.y + 10) &&
-            (bacPos.y >= phagePos.y - 10)
+            (bacPos.x <= phagePos.x + 20) &&
+            (bacPos.x >= phagePos.x - 20) &&
+            (bacPos.y <= phagePos.y + 20) &&
+            (bacPos.y >= phagePos.y - 20)
         );
     }
 
@@ -49,7 +50,7 @@ class Phage extends Organism {
         for (let i = 0; i < phageRadius; i++) {
             offSpring.push(new Phage(
                 new Vec2(this.position.x, this.position.y),
-                this.radius,
+                5,
                 this.scale,
                 this.lysisTimer,
                 this.lifeSpan,
