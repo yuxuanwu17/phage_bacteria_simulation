@@ -29,21 +29,6 @@ class Phage extends Organism {
     }
 
 
-    static infectPosition(phagePos, bacPos) {
-        /**
-         * check if the bacteria position is in close the phage's infect position (10 by 10 box)
-         */
-        return (
-            (bacPos.x <= phagePos.x + 20) &&
-            (bacPos.x >= phagePos.x - 20) &&
-            (bacPos.y <= phagePos.y + 20) &&
-            (bacPos.y >= phagePos.y - 20)
-        );
-    }
-
-    static canInfect(bacterium) {
-        return bacterium.recombinationSite === "normal";
-    }
 
     cycle(phageOffspring, lifespan) {
         const offSpring = [];

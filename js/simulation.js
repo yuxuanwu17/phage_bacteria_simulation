@@ -221,9 +221,23 @@ function giveBirth(parent, lifespan, bacReplicateRate) {
 
     let probability1 = Math.random();
     if (parent.recombinationSite === "normal") {
-        b.recombinationSite = probability1 < 0.95 ? "normal" : "infected";
+        if (probability1 < 0.95){
+            b.recombinationSite = "normal"
+            b.infected = false
+        }else {
+            b.recombinationSite = "infected"
+            b.infected = true
+        }
+
     } else if (parent.recombinationSite === "infected") {
-        b.recombinationSite = probability1 < 0.5 ? "infected" : "normal";
+        if (probability1 < 0.5){
+            b.recombinationSite = "normal"
+            b.infected = false
+        }else {
+            b.recombinationSite = "infected"
+            b.infected = true
+        }
+
     }
 
     // // give the replicate bacteria to blue (replicate)
@@ -254,7 +268,7 @@ function infectBacteria(phages, bacteria, infectedBacteria, lysisRate) {
     for (const bacterium of bacteria) {
         let found = false;
         for (let iP = 0; iP < phages.length;) {
-            if (Phage.infectPosition(phages[iP].position, bacterium.position) && Phage.canInfect(bacterium)) {
+            if (infectPosition(phages[iP], bacterium) && canInfect(bacterium)) {
                 bacterium.insidePhage = phages[iP];
                 bacterium.lysisTimer = Math.floor(Math.random() * lysisRate);
                 bacterium.infected = true
@@ -274,4 +288,28 @@ function infectBacteria(phages, bacteria, infectedBacteria, lysisRate) {
     }
     // console.log("infected bacteria list:"+infectedBacteria)
     return {phages, updatedBacteria, infectedBacteria};
+}
+
+function infectPosition(phage, bacterium) {
+    // Calculate the effective radii by multiplying the radius by the scale
+    const phageEffectiveRadius = phage.radius * phage.scale;
+    // console.log(phageEffectiveRadius)
+    const bacteriumEffectiveRadius = bacterium.radius * bacterium.scale;
+    // console.log(bacteriumEffectiveRadius)
+    // Calculate the distance between the phage and bacterium centers
+    const dx = phage.position.x - bacterium.position.x;
+    const dy = phage.position.y - bacterium.position.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+
+    // console.log(dx, dy, distance)
+    // Check if the distance is less than or equal to the sum of their effective radii
+    return distance <= phageEffectiveRadius + bacteriumEffectiveRadius;
+
+}
+
+
+function canInfect(bacterium) {
+    console.log()
+    return bacterium.recombinationSite === "normal";
 }
