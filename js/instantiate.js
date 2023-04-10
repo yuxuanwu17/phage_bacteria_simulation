@@ -34,7 +34,6 @@ function generateBacteria(lifespan, bacReplicateRate, bacScale) {
 function generateImmuneCell(immuneCellScale) {
     return new ImmuneCell(
         getRandomPosition(600, 600),
-        50,
         8,
         immuneCellScale
     );

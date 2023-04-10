@@ -1,7 +1,6 @@
 class ImmuneCell extends Organism {
-    constructor(position, huntingRange, radius, scale) {
+    constructor(position,  radius, scale) {
         super(position, 255, 255, 255, radius, scale);
-        this.huntingRange = huntingRange;
     }
 
     draw(ctx) {

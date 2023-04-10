@@ -12,19 +12,6 @@ class Simulation {
 
     }
 
-    // calculate the hunting region of immune cells
-    static deadZone(immuneCells) {
-        let deadZone = [];
-        for (const immuneCell of immuneCells) {
-            for (let x = immuneCell.position.x - immuneCell.huntingRange; x <= immuneCell.position.x + immuneCell.huntingRange; x++) {
-                for (let y = immuneCell.position.y - immuneCell.huntingRange; y <= immuneCell.position.y + immuneCell.huntingRange; y++) {
-                    deadZone.push(new Vec2(x, y));
-                }
-            }
-        }
-        return deadZone;
-    }
-
     getBacteriaCount() {
         // Return the total number of bacteria
         return simulation.bacteria.length;
@@ -94,16 +81,6 @@ class Simulation {
         this.bacteria.push(...newBorn);
     }
 
-    eatenByImmune() {
-        const {
-            phages,
-            bacteria,
-            infectedBacteria
-        } = eatenByImmune(this.phages, this.bacteria, this.infectedBacteria, this.immuneCells);
-        this.phages = phages;
-        this.bacteria = bacteria;
-        this.infectedBacteria = infectedBacteria;
-    }
 
     infectBacteria(lysisRate) {
         const {
@@ -153,7 +130,6 @@ class Simulation {
     }
 
     update() {
-        this.eatenByImmune();
         this.infectBacteria(this.lysisRate);
         this.lysis(this.phageOffspring);
         this.updateLifespan();
@@ -227,19 +203,6 @@ function giveBirth(parent, lifespan, bacReplicateRate) {
     return b;
 }
 
-function eatenByImmune(phages, bacteria, infectedBacteria, immuneCells) {
-    /**
-     * Only the phages and bacteria would get involved in the immune cell
-     * @type {*[]}
-     */
-    const deadZonePositions = Simulation.deadZone(immuneCells);
-
-    phages = phages.filter(phage => !phage.getEaten(deadZonePositions));
-    bacteria = bacteria.filter(bacterium => !bacterium.getEaten(deadZonePositions));
-    infectedBacteria = infectedBacteria.filter(infected => !infected.getEaten(deadZonePositions));
-
-    return {phages, bacteria, infectedBacteria};
-}
 
 // a helper function used to interact the bacteria
 function infectBacteria(phages, bacteria, infectedBacteria, lysisRate) {
