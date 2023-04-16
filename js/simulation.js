@@ -97,7 +97,7 @@ class Simulation {
 
         // console.log(this.bacteria)
         for (let i = 0; i < phageNum; i++) {
-            this.phages.push(generatePhage(phageOffspring, phageScale, 600));
+            this.phages.push(generatePhage(phageOffspring, phageScale, lifespan));
         }
 
         for (let i = 0; i < immuneCellNum; i++) {
@@ -118,14 +118,12 @@ class Simulation {
         this.bacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
         // this.bacteria.forEach(bacterium => console.log(bacterium));
 
-        console.log(this.bacteria)
         this.bacteria = this.bacteria.filter(bacterium => bacterium.lifeSpan > 0)
-        this.bacteria.forEach(bacterium => console.log(bacterium));
+        // this.bacteria.forEach(bacterium => console.log(bacterium));
         // console.log(this.bacteria)
 
         this.infectedBacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
         this.infectedBacteria = this.infectedBacteria.filter(bacterium => bacterium.lifeSpan > 0)
-        // console.log(this.infectedBacteria.length)
         // this.bacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
     }
