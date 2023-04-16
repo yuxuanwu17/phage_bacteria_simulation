@@ -171,10 +171,10 @@ function giveBirth(parent, lifespan, bacReplicateRate) {
         parent.infected
     )
 
-    // // give the replicate bacteria to blue (replicate)
-    b.red = 0;
-    b.green = 0;
-    b.blue = 255;
+    // // // give the replicate bacteria to blue (replicate)
+    // b.red = 0;
+    // b.green = 0;
+    // b.blue = 255;
 
     return b;
 }
@@ -228,6 +228,6 @@ function infectPosition(phage, bacterium) {
 
 
 function canInfect(bacterium) {
-    console.log()
+    // console.log()
     return bacterium.recombinationSite === "normal";
 }

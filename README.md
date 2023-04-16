@@ -4,6 +4,38 @@
 - [ ] add a place that could show the number of active bacteria, phage with numbers
 - [ ] figure out the optimal time and lysis
 
+
+
+Kc: bacterial 不能超过这么多
+
+- [ ] immune cell 不能吃 phage
+- [ ] phage 的population一部分消失
+- [ ] growth的逻辑
+
+
+
+
+
+March 22 3:00 ? 8:00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Requirements
 
 For the presentations, I would keep it simple: tell your colleagues what the question is, why you found it interesting, why you picked to work on this, what papers you used, did you recreate their results?, did you do something extra? What was harder than anticipated, where did you struggle, what did you not expect? Tell us what you learned in the process and leave your colleagues with one (just one! :) ) piece of information to remember, the thing you found the coolest!
