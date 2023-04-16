@@ -113,8 +113,18 @@ class Simulation {
 
         // Move phages and other organisms
         this.phages.forEach(phage => phage.update(this.lifespan, 600, 600));
+        this.phages = this.phages.filter(phage => phage.lifeSpan > 0);
+        console.log(this.phages)
         this.bacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
+        // this.bacteria.forEach(bacterium => console.log(bacterium));
+
+        console.log(this.bacteria)
+        this.bacteria = this.bacteria.filter(bacterium => bacterium.lifeSpan > 0)
+        this.bacteria.forEach(bacterium => console.log(bacterium));
+        // console.log(this.bacteria)
+
         this.infectedBacteria.forEach(bacterium => bacterium.update(this.lifespan, this.bacReplicateRate, 600, 600));
+        this.infectedBacteria = this.infectedBacteria.filter(bacterium => bacterium.lifeSpan > 0)
         // console.log(this.infectedBacteria.length)
         // this.bacteria.forEach(bacterium => console.log(bacterium));
         this.immuneCells.forEach(immuneCell => immuneCell.update(this.bacteria, this.infectedBacteria, this.phages, 600, 600));
@@ -160,7 +170,15 @@ function samePosition(p1, p2, r1, r2) {
 
 function giveBirth(parent, lifespan, bacReplicateRate) {
     // console.log("inside the give birth")
-    let b = new Bacteria(new Vec2(parent.position.x, parent.position.y),
+    // let b =
+
+    // // // give the replicate bacteria to blue (replicate)
+    // b.red = 0;
+    // b.green = 0;
+    // b.blue = 255;
+
+    // except the replication rate and life span, all the other is the same
+    return new Bacteria(new Vec2(parent.position.x, parent.position.y),
         parent.recombinationSite,
         parent.insidePhage,
         Math.floor(Math.random() * bacReplicateRate),
@@ -169,14 +187,7 @@ function giveBirth(parent, lifespan, bacReplicateRate) {
         5,
         parent.scale,
         parent.infected
-    )
-
-    // // // give the replicate bacteria to blue (replicate)
-    // b.red = 0;
-    // b.green = 0;
-    // b.blue = 255;
-
-    return b;
+    );
 }
 
 

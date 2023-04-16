@@ -108,7 +108,7 @@ window.onload = function () {
                 createCharts(bacteriaCounts, phageSizes, infectedBacteriaCounts);
             }
 
-        }, 100); // Set an interval time as needed
+        }, 100); // Set an interval time as needed, control the update speed
     }
 
 

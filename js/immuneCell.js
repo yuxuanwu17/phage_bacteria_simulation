@@ -31,12 +31,12 @@ class ImmuneCell extends Organism {
             }
 
             // Eat phages within hunting range
-            for (let i = 0; i < phages.length; i++) {
-                if (samePosition(this.position, phages[i].position, this.radius * this.scale, phages[i].radius * phages[i].scale)) {
-                    phages.splice(i, 1);
-                    i--;
-                }
-            }
+            // for (let i = 0; i < phages.length; i++) {
+            //     if (samePosition(this.position, phages[i].position, this.radius * this.scale, phages[i].radius * phages[i].scale)) {
+            //         phages.splice(i, 1);
+            //         i--;
+            //     }
+            // }
         }
 
     }

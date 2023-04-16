@@ -5,11 +5,6 @@ class Phage extends Organism {
         this.lifeSpan = lifeSpan;
     }
 
-    lifeSpanCountDown() {
-        this.lifeSpan--;
-        // console.log(this)
-    }
-
     draw(ctx) {
         ctx.beginPath();
         ctx.arc(this.position.x, this.position.y, this.radius * this.scale, 0, Math.PI * 2);

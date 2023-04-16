@@ -14,9 +14,6 @@ class Bacteria extends Organism {
         this.lysisTimer--;
     }
 
-    lifeSpanCountDown() {
-        this.lifeSpan--;
-    }
 
     replicateCountDown() {
         this.replicateTimer--;
@@ -40,6 +37,7 @@ class Bacteria extends Organism {
     update(lifespan, bacReplicateRate, width, height) {
         // Decrease the lifespan and update the green color based on the remaining lifespan
         this.lifeSpan--;
+
         // control the color, with color changes, the rgb color for green would decrease until black
         this.green = Math.max(0, this.lifeSpan * 255 / lifespan);
 
