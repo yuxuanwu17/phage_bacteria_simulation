@@ -1,45 +1,6 @@
-# TODO
-
-- [ ] add a restart button
-- [ ] add a place that could show the number of active bacteria, phage with numbers
-- [ ] figure out the optimal time and lysis
-
-
-
-Kc: bacterial 不能超过这么多
-
-- [ ] immune cell 不能吃 phage
-- [ ] phage 的population一部分消失
-- [ ] growth的逻辑
-
-
-
-
-
-March 22 3:00 ? 8:00
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Requirements
 
 For the presentations, I would keep it simple: tell your colleagues what the question is, why you found it interesting, why you picked to work on this, what papers you used, did you recreate their results?, did you do something extra? What was harder than anticipated, where did you struggle, what did you not expect? Tell us what you learned in the process and leave your colleagues with one (just one! :) ) piece of information to remember, the thing you found the coolest!
-
 
 
 # Research 
@@ -54,32 +15,29 @@ https://www.sciencedirect.com/science/article/pii/S0022519317303235?via%3Dihub
 
 
 
-
-
-
-# Background informtion & Simulation logic 
+# Background information & Simulation logic 
 
 The provided code is a simulation of a biological environment where different organisms interact with each other. The main organisms in this code are:
 
 1. Bacteria
-2. Phages (viruses that infect bacteria)
+2. Phages
 3. Immune cells
 
-The simulation is run using the Engine function, which takes several parameters and returns a series of frames that depict the state of the environment at different time steps. The primary components of the simulation are:
+The simulation is run inside the main.js, which takes several parameters and returns a series of frames that depict the state of the environment at different time steps. The primary components of the simulation are:
 
 1. Bacteria replication
 2. Phage infection of bacteria
-3. Bacterial lysis by phages
-4. Immune cell hunting of bacteria and phages
+3. Bacterial lysis and generate new phages
+4. Immune cell hunting of bacteria
 5. Organisms moving around the environment
 
 Each frame of the simulation is computed by the Update function, which takes care of updating the state of the environment for a single time step. The following interactions are considered in the Update function:
 
-1. Immune cells eating bacteria and phages: EatenbyImmu function
+1. Immune cells eating bacteria: EatenbyImmu function
 2. Phages infecting bacteria: InfectBac function
 3. Lysis of infected bacteria by phages: Lysis function
 4. Replication of bacteria: BacReplicate function
-5. Movement of organisms: OranismMove function
+5. Movement of organisms: Organism move function
 
 In addition to these, there are several helper functions that handle various aspects of the simulation, such as checking if two organisms occupy the same position, updating the timers of bacteria, determining if a phage can infect a bacterium, and creating offspring for bacteria and phages.
 
@@ -370,25 +328,11 @@ This `infectBacteria()` function takes four arguments: `phages`, `bacteria`, `in
 This function essentially simulates the infection process of phages on bacteria and updates the state of the simulation according to the infection events that occurred.
 
 
-
-
-
-
-
-
-
 # Problems to be solved
 
 - [ ] why the infection not work
 - [ ] infect case should be orange 
 - [ ] try to understand the inner mechanisms behind this simulation
-
-
-
-
-
-
-
 
 
 # Readme
